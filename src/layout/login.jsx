@@ -17,10 +17,18 @@ const Login = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.loginBox}>
-        <h2 style={styles.title}>EMS Login</h2>
-        <p style={styles.subtitle}>Education Management System</p>
+    <div style={styles.page}>
+      {/* Background Blobs */}
+      <div style={styles.blob1}></div>
+      <div style={styles.blob2}></div>
+
+      <div style={styles.card}>
+        <div style={styles.badge}>EMS Portal</div>
+
+        <h2 style={styles.title}>Welcome Back</h2>
+        <p style={styles.subtitle}>
+          Education Management System Login
+        </p>
 
         {notification && (
           <div style={styles.notification}>{notification}</div>
@@ -43,13 +51,22 @@ const Login = () => {
             style={styles.input}
           />
 
-          <button type="submit" style={styles.loginBtn}>
+          <button
+            type="submit"
+            style={styles.loginBtn}
+            onMouseEnter={(e) =>
+              (e.target.style.transform = "translateY(-2px)")
+            }
+            onMouseLeave={(e) =>
+              (e.target.style.transform = "translateY(0px)")
+            }
+          >
             🔐 Login
           </button>
         </form>
 
         <p style={styles.footer}>
-          Forgot password? Contact admin
+          Forgot password? Contact administrator
         </p>
       </div>
     </div>
@@ -57,70 +74,123 @@ const Login = () => {
 };
 
 const styles = {
-  container: {
-    height: "100vh",
+  /* ===== PAGE BACKGROUND ===== */
+  page: {
+    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(135deg, #141e30, #243b55)",
-    fontFamily: "Arial",
+    padding: "20px",
+    background: "linear-gradient(135deg, #0f172a, #1e293b, #0f172a)",
+    fontFamily: "'Inter', sans-serif",
+    position: "relative",
+    overflow: "hidden",
   },
 
-  loginBox: {
-    width: "350px",
-    background: "white",
-    padding: "30px",
-    borderRadius: "12px",
+  /* ===== BLUR BLOBS ===== */
+  blob1: {
+    position: "absolute",
+    width: "250px",
+    height: "250px",
+    background: "rgba(59,130,246,0.4)",
+    borderRadius: "50%",
+    filter: "blur(80px)",
+    top: "15%",
+    left: "15%",
+  },
+
+  blob2: {
+    position: "absolute",
+    width: "220px",
+    height: "220px",
+    background: "rgba(16,185,129,0.4)",
+    borderRadius: "50%",
+    filter: "blur(80px)",
+    bottom: "15%",
+    right: "15%",
+  },
+
+  /* ===== LOGIN CARD ===== */
+  card: {
+    width: "100%",
+    maxWidth: "380px",
+    padding: "35px",
+    borderRadius: "20px",
+    background: "rgba(255,255,255,0.08)",
+    border: "1px solid rgba(255,255,255,0.15)",
+    backdropFilter: "blur(18px)",
+    boxShadow: "0 25px 60px rgba(0,0,0,0.4)",
     textAlign: "center",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+    zIndex: 2,
   },
 
+  badge: {
+    display: "inline-block",
+    padding: "5px 12px",
+    borderRadius: "50px",
+    background: "rgba(59,130,246,0.2)",
+    color: "#60a5fa",
+    fontSize: "12px",
+    marginBottom: "12px",
+    border: "1px solid rgba(59,130,246,0.3)",
+  },
+
+  /* ===== TEXT ===== */
   title: {
-    fontSize: "24px",
+    fontSize: "26px",
+    fontWeight: "800",
+    color: "#fff",
     marginBottom: "5px",
-    fontWeight: "bold",
   },
 
   subtitle: {
     fontSize: "13px",
-    color: "#666",
+    color: "rgba(255,255,255,0.7)",
     marginBottom: "20px",
   },
 
+  /* ===== INPUT ===== */
   input: {
     width: "100%",
-    padding: "12px",
+    padding: "12px 14px",
     margin: "8px 0",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,255,255,0.2)",
+    background: "rgba(255,255,255,0.05)",
+    color: "#fff",
     outline: "none",
+    fontSize: "14px",
   },
 
+  /* ===== BUTTON ===== */
   loginBtn: {
     width: "100%",
     padding: "12px",
-    marginTop: "10px",
-    background: "#2a5298",
-    color: "white",
+    marginTop: "12px",
+    borderRadius: "12px",
     border: "none",
-    borderRadius: "8px",
     cursor: "pointer",
-    fontWeight: "bold",
+    fontWeight: "600",
+    color: "#fff",
+    background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+    transition: "0.3s",
   },
 
+  /* ===== NOTIFICATION ===== */
   notification: {
-    background: "#e6f7ff",
-    border: "1px solid #91d5ff",
+    background: "rgba(59,130,246,0.15)",
+    border: "1px solid rgba(59,130,246,0.4)",
     padding: "10px",
-    borderRadius: "8px",
-    marginBottom: "10px",
+    borderRadius: "10px",
+    marginBottom: "12px",
     fontSize: "13px",
+    color: "#93c5fd",
   },
 
   footer: {
-    marginTop: "10px",
+    marginTop: "15px",
     fontSize: "12px",
-    color: "#888",
+    color: "rgba(255,255,255,0.5)",
   },
 };
 
