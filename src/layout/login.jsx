@@ -25,7 +25,33 @@ const Login = () => {
       return;
     }
 
-    setNotification("✅ Login Successful! Welcome to EMS Dashboard");
+    // Get user from localStorage
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || user.email !== email) {
+      setNotification("❌ User not found. Please sign up first");
+      return;
+    }
+
+    if (user.password !== password) {
+      setNotification("❌ Incorrect password");
+      return;
+    }
+
+    setNotification("✅ Login Successful! Redirecting...");
+
+    // Role-based routing
+    const routes = {
+      Admin: "/admin/dashboard",
+      "Development Team": "/development/dashboard",
+      "Support Team": "/support/dashboard",
+      KAM: "/kam/dashboard",
+      Institute: "/institute/dashboard",
+    };
+
+    setTimeout(() => {
+      navigate(routes[user.role] || "/");
+    }, 1500);
   };
 
   return (
@@ -39,7 +65,9 @@ const Login = () => {
         <h2 style={styles.title}>Welcome Back</h2>
         <p style={styles.subtitle}>Education Management System Login</p>
 
-        {notification && <div style={styles.notification}>{notification}</div>}
+        {notification && (
+          <div style={styles.notification}>{notification}</div>
+        )}
 
         <form onSubmit={handleLogin}>
           <input
@@ -63,7 +91,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* 👇 NEW SIGN IN BUTTON */}
         <button
           onClick={() => navigate("/signin")}
           style={styles.signInBtn}
